@@ -1,0 +1,26 @@
+
+
+.card {
+    font-size: 2em;
+    flex: 1 1 calc(100% / 6 - 0.4em);
+    border: 0.06em solid silver;
+    margin: 0.2em;
+    width : 2em;
+    height: 2.5em;
+    float: left;
+    display: flex;
+    cursor: default;
+    border-radius: 12px;
+  }
+  
+.card.hidden {
+    background: #cecece;
+  }
+  
+.card.visible {
+    cursor: not-allowed;
+  }
+  
+.card > .symbol {
+    margin: auto;
+  }
