@@ -1,16 +1,13 @@
 import React from 'react';
-import Field from './Field'
-import GuessCount from './GuessCount'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Game from './Game';
 
 class App extends React.Component {
 
-  render() {
-    const won = new Date().getSeconds() % 2 === 0;
-    
+  render() {    
     return (
       <div className="memory">
-        <GuessCount guesses={0} />
-        <Field></Field>
+        <Game/>
       </div>
     )
   }

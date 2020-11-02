@@ -1,23 +1,30 @@
 
-import React, { useState } from 'react'
+import React from 'react'
+import ReactCardFlip from "react-card-flip";
 import './Card.css'
 
 const HIDDEN_SYMBOL = '❓';
 
-function Card(symbol) {
-    const [feedback, setFeedback] = useState("hidden");
+// flipped = visible
+// isFlipped = hidden
 
-    var handleClick = () => {
-        setFeedback(feedback === "visible" ? "hidden" : "visible");
-    };
+function Card({symb, index, flipped, found, clickCard}) {
 
-    return (
-        <div className={`card ${feedback}`} onClick={() => handleClick()}>
+  return (
+    <ReactCardFlip isFlipped={!found && !flipped}>
+      <div className='mycard visible' onClick={() => clickCard(index) }>
         <span className="symbol">
-          {feedback === 'hidden' ? HIDDEN_SYMBOL : symbol.symb}
+          {symb}
         </span>
-      </div>  
-    )
+      </div>
+
+      <div className='mycard hidden' onClick={() => clickCard(index) }>
+        <span className="symbol">
+          {HIDDEN_SYMBOL}
+        </span>
+      </div>
+    </ReactCardFlip>
+  )
 }
 
 export default Card

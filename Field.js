@@ -1,69 +1,99 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import Confetti from 'react-confetti';
+import useWindowDimensions from './useWindowDimensions';
 import Card from './Card';
 import './Field.css';
 
 
-function Field()
+function Field({cards})
 {
-    const [selected1, setSelected1] = useState(-1);
-    const [selected2, setSelected2] = useState(-1);
-    var cards = [
-        "⚖️", "🛵", "🐦", "🛒", "🔧",
-        "⚖️", "🛵", "🐦", "🛒", "🔧",
-        "🚕", "🚀", "⏳", "⏰", "💡",
-        "🚕", "🚀", "⏳", "⏰", "💡"   
-      ];
-    
-    var shuffle = (arr) => {
-        var i, j, temp;
+    const [ selected, setSelected ] = useState([]);
+    const [ found, setFound ] = useState([]);
+    const [ isVictory, setVictory ] = useState(false);
+    const { height, width } = useWindowDimensions();
+    const timer = useRef(null)
 
-        for (i = arr.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-        return arr;    
-    };
 
-    var match = () => {
-        if (cards[selected1] === cards[selected2])
+    const isFound = index => {
+        return found.filter(elem => elem === index).length;
+    }
+
+    const isSelected = index => {
+        return selected.filter(elem => elem === index).length;
+    }
+
+    const match = () => {
+        if (cards[selected[0]] === cards[selected[1]])
             return true;
         return false;
     };
 
-    var handleClick = (feedback) => {
-        console.log(1);
-        if (selected1)
+    const checkVictory = () => {
+        if (found.length === cards.length)
+            setVictory(true)
+    }
+
+    useEffect(() => {
+        if (selected.length == 2)
         {
-            setSelected2(1);
-            setTimeout(() => {
-                if (match())
-                {
-                    // card1.feedback = visible
-                    // card2.feedback = visible
-                }
-                else
-                {
-                    // card1.feedback = hidden
-                    // card2.feedback = hidden
-                }
-                setSelected1(-1);
-                setSelected2(-1);
-            }, 2000);
+            if (match())
+            {
+                setFound(prev => [...prev, ...selected])
+                setSelected(() => [])
+            }
+            else
+            {
+                timer.current = setTimeout(() => {
+                    setSelected(() => [])
+                }, 1500)
+            }
         }
-        else
-            setSelected1(1);
+    }, [selected])
+
+    useEffect(() => {
+        checkVictory()
+    }, [found])
+
+    const handleClick = (index) => {
+        if (isFound(index))
+            return;
+        switch (selected.length)
+        {
+            case 0:
+                setSelected(prev => [...prev, index])
+                break;
+            case 1:
+                setSelected(prev => [...prev, index])
+                break;
+            default:
+                clearTimeout(timer.current)
+                setSelected(prev => [index])
+        }
     };
 
-    cards = shuffle(cards);
     return (
-        <div className="field">
-
-            {cards.map((card, index) => (
-                <Card symb={card} key={index} onClick={handleClick}/>
-            ))}
-
+        <div className='body'>
+            <div className="field">
+            {
+                isVictory && 
+                    <Confetti
+                        width={width}
+                        height={height}
+                    />
+            }
+            {
+                cards.map((icon, index) => (
+                    <Card
+                        symb = {icon}
+                        key = {index} 
+                        index = {index} 
+                        flipped = {isSelected(index)}
+                        found = {isFound(index)}
+                        clickCard = {handleClick}
+                    />
+                ))
+            }
+            </div>
         </div>
     )
 }

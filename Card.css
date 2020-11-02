@@ -1,9 +1,12 @@
 
 
-.card {
+.mycard {
     font-size: 2em;
     flex: 1 1 calc(100% / 6 - 0.4em);
-    border: 0.06em solid silver;
+    box-shadow: 0 .46875rem 2.1875rem rgba(90,97,105,.1),
+                0 .9375rem 1.40625rem rgba(90,97,105,.1),
+                0 .25rem .53125rem rgba(90,97,105,.1),
+                0 .125rem .1875rem rgba(90,97,105,.1);
     margin: 0.2em;
     width : 2em;
     height: 2.5em;
@@ -13,14 +16,14 @@
     border-radius: 12px;
   }
   
-.card.hidden {
-    background: #cecece;
+.mycard.hidden {
+    background: #8fa8cc;
   }
   
-.card.visible {
+.mycard.visible {
     cursor: not-allowed;
   }
   
-.card > .symbol {
+.mycard > .symbol {
     margin: auto;
   }
