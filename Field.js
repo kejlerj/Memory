@@ -1,16 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Confetti from 'react-confetti';
-import useWindowDimensions from './useWindowDimensions';
 import Card from './Card';
 import './Field.css';
 
 
-function Field({cards})
+function Field({cards, incrClick, setVictory})
 {
     const [ selected, setSelected ] = useState([]);
     const [ found, setFound ] = useState([]);
-    const [ isVictory, setVictory ] = useState(false);
-    const { height, width } = useWindowDimensions();
     const timer = useRef(null)
 
 
@@ -64,36 +60,28 @@ function Field({cards})
                 break;
             case 1:
                 setSelected(prev => [...prev, index])
+                incrClick()
                 break;
             default:
                 clearTimeout(timer.current)
-                setSelected(prev => [index])
+                setSelected(() => [index])
         }
     };
 
     return (
-        <div className='body'>
-            <div className="field">
-            {
-                isVictory && 
-                    <Confetti
-                        width={width}
-                        height={height}
-                    />
-            }
-            {
-                cards.map((icon, index) => (
-                    <Card
-                        symb = {icon}
-                        key = {index} 
-                        index = {index} 
-                        flipped = {isSelected(index)}
-                        found = {isFound(index)}
-                        clickCard = {handleClick}
-                    />
-                ))
-            }
-            </div>
+        <div className="field">
+        {
+            cards.map((icon, index) => (
+                <Card
+                    symb = {icon}
+                    key = {index} 
+                    index = {index} 
+                    flipped = {isSelected(index)}
+                    found = {isFound(index)}
+                    clickCard = {handleClick}
+                />
+            ))
+        }
         </div>
     )
 }

@@ -1,13 +1,9 @@
 
-.body {
-    height: 100vh;
-    margin : 0 auto;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-
-}
 
 .field {
-    width: 25em;
+    align-self: center;
+    width: 24em;
+    display: block;
+    overflow: auto;
+    margin: auto;
 }
