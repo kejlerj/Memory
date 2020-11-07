@@ -32,3 +32,18 @@
     overflow: auto;
     margin: auto;
 }
+
+@media screen and (max-width: 640px) {
+    .game {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .game {
+        width: 90%;
+    }
+    .header {
+        width: 18em;
+    }
+}

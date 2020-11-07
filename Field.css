@@ -7,3 +7,9 @@
     overflow: auto;
     margin: auto;
 }
+
+@media screen and (max-width: 400px) {
+    .field {
+        width: 18em;
+    }
+  }

@@ -30,7 +30,7 @@ function Field({cards, incrClick, setVictory})
     }
 
     useEffect(() => {
-        if (selected.length == 2)
+        if (selected.length === 2)
         {
             if (match())
             {

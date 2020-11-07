@@ -26,3 +26,9 @@
 .mycard > .symbol {
     margin: auto;
   }
+
+@media screen and (max-width: 400px) {
+  .mycard {
+    font-size: 1.5em;
+  }
+}

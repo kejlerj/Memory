@@ -44,6 +44,12 @@ function Game() {
         return score > 0 ? score : 0 
     }
 
+
+
+    const display_leaderboard = () => {
+
+    }
+
     const shuffle = (arr) => {
         var i, j;
 
@@ -80,6 +86,7 @@ function Game() {
                     </div>
                 </div>
                 <div className='game'>
+
                     <Field
                         cards={cards}
                         incrClick={incrClick}
