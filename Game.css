@@ -31,6 +31,11 @@
     display: block;
     overflow: auto;
     margin: auto;
+    text-align: center;
+}
+
+.leaderboard-button {
+    margin-top: 15px;
 }
 
 @media screen and (max-width: 640px) {
