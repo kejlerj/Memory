@@ -111,16 +111,16 @@ function Menu() {
                             }
  
                             <Grid container justify='center'>
-                                <NavLink to='/game'>
                                     <Button 
-                                            variant="contained" 
-                                            color="primary"
-                                            disabled={!pseudo}
-                                            onClick={() => Cookies.set('pseudo', pseudo)}
+                                        variant="contained" 
+                                        component={NavLink}
+                                        to='/game'
+                                        color="primary"
+                                        disabled={!pseudo}
+                                        onClick={() => Cookies.set('pseudo', pseudo)}
                                     >
                                         Jouer
                                     </Button>
-                                </NavLink>
                             </Grid>
                         </CardContent>
                     </Card>

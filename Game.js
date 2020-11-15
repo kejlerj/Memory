@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react"
 import Cookies from 'js-cookie'
 import Confetti from 'react-confetti'
 import useWindowDimensions from './useWindowDimensions'
-import { NavLink } from "react-router-dom"
+import { NavLink, Redirect } from "react-router-dom"
 import { Popover, Button, IconButton, Snackbar } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import { ArrowBack } from '@material-ui/icons'
@@ -110,6 +110,8 @@ function Game() {
         setClicks(prev => prev + 1)
     }
 
+    if (!Cookies.get('pseudo') || Cookies.get('pseudo').length < 1)
+        return <Redirect to='/'/>
     return (
         <div className='body'>
         {
