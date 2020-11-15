@@ -73,7 +73,7 @@ function Leaderboard({onClose}) {
                             ))
                         }
                         {
-                            Array.apply(null, Array(10 - dataSize)).map((player, i) => (
+                            dataSize < 5 && Array.apply(null, Array(5 - dataSize)).map((player, i) => (
                                 <div key={i}>
                                     <ListItem button>
                                         <ListItemAvatar>
@@ -98,8 +98,8 @@ function Leaderboard({onClose}) {
                 </Grid>
             </Grid>
             <Snackbar open={errorSnackbar} autoHideDuration={6000} onClose={closeSnackbar}>
-                <Alert onClose={closeSnackbar} >
-                    Le score n'a pas pu etre sauvegardé ..
+                <Alert onClose={closeSnackbar} severity='error'>
+                    Le classement n'a pas pu etre téléchargé..
                 </Alert>
             </Snackbar>
         </div>

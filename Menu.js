@@ -6,6 +6,7 @@ import './Menu.css';
 
 function Menu() {
     const [ pseudo, setPseudo ] = useState('');
+    // const [ darkmode, setDarkmode ] = useState(false);
 
     const marks = [
         {
@@ -74,7 +75,40 @@ function Menu() {
                                     />
                                 </Grid>
                             </Grid>
+                            {
+                                /*
+                                    <Grid container>
+                                        <Grid item xs={3} sm={4} md={5}/>
+                                        <Grid item xs={6} sm={4} md={2}>
+                                            <Slider
+                                                min={12}
+                                                max={30}
+                                                defaultValue={20}
+                                                valueLabelFormat={valuetext}
+                                                getAriaValueText={valuetext}
+                                                aria-labelledby="discrete-slider-restrict"
+                                                step={null}
+                                                valueLabelDisplay="auto"
+                                                marks={marks}
+                                            />
+                                        </Grid>
+                                    </Grid>
+                                */
+                            }
 
+                            {
+                                /*
+                                <Grid container justify={'center'}>
+                                    <Switch
+                                        checked={darkmode}
+                                        onChange={() => setDarkmode(prev => !prev)}
+                                        color="primary"
+                                        name="switchMode"
+                                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                                    />
+                                </Grid>
+                                */
+                            }
  
                             <Grid container justify='center'>
                                 <NavLink to='/game'>
@@ -97,3 +131,8 @@ function Menu() {
 }
 
 export default Menu;
+
+// State pour pseudo / nombre de carte / darkmode
+// Envoyer pseudo et nb carte a game
+// changer darkmode en live
+// disable button si aucun pseudo n'est selectionné

@@ -15,7 +15,7 @@ function Game() {
     const [ count, setCount ] = useState(0)
     const [ clicks, setClicks ] = useState(0)
     const [ score, setScore ] = useState(0)
-    const [ errorSnackbar, SeterrorSnackbar ] = useState( false)
+    const [ errorSnackbar, SeterrorSnackbar ] = useState(false)
     const [ cards, setCards ] = useState( [
         "⚖️", "🛵", "🐦", "🛒", "🔧",
         "⚖️", "🛵", "🐦", "🛒", "🔧",
@@ -25,7 +25,7 @@ function Game() {
     const [ isVictory, setVictory ] = useState(false);
     const { height, width } = useWindowDimensions();
     const counter = useRef(null)
-    const popoverRef = React.useRef();
+    const popoverRef = useRef(null);
     const [anchorEl, setAnchorEl] = useState(null);
     const server = 'https://memory.jeremykejler.fr'
     const open = Boolean(anchorEl)
@@ -39,6 +39,15 @@ function Game() {
     const handleClose = () => {
       setAnchorEl(null)
     };
+
+    const handleRestart = () => {
+        // to have muttable array (and refresh state)
+        setCards(() => shuffle(cards).slice())
+        setCount(() => 0)
+        setScore(() => 0)
+        setClicks(() => 0)
+        setVictory(() => false)
+    }
 
     const closeSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
@@ -140,6 +149,15 @@ function Game() {
                                 classement
                             </Button>
                     </div>
+                    <div className='restart-button'>
+                            <Button 
+                                variant="contained" 
+                                color="primary" 
+                                onClick={handleRestart}
+                            >
+                                Rejouer
+                            </Button>
+                    </div>
                 </div>
             </div>
             <Popover
@@ -159,12 +177,11 @@ function Game() {
                 PaperProps={{
                     style:{width: '600px'}
                 }}
-                score={score}
             >
                 <Leaderboard onClose={handleClose} />
             </Popover>
             <Snackbar open={errorSnackbar} autoHideDuration={6000} onClose={closeSnackbar}>
-                <Alert onClose={closeSnackbar} >
+                <Alert onClose={closeSnackbar} variant='error' >
                     Le score n'a pas pu etre sauvegardé ..
                 </Alert>
             </Snackbar>

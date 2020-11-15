@@ -47,6 +47,13 @@ function Field({cards, incrClick, setVictory})
     }, [selected])
 
     useEffect(() => {
+        console.log("reset")
+        console.log(cards)
+        setSelected(() => [])
+        setFound(() => [])
+    }, [cards])
+
+    useEffect(() => {
         checkVictory()
     }, [found])
 

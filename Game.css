@@ -25,28 +25,29 @@
 }
 
 .game {
-    width: 75%;
+    width: 24em;
     height: 60vh;
     align-self: center;
     display: block;
     overflow: auto;
     margin: auto;
-    text-align: center;
 }
 
 .leaderboard-button {
     margin-top: 15px;
+    margin-left: 15px;
+    position: absolute;
 }
 
-@media screen and (max-width: 640px) {
-    .game {
-        width: 100%;
-    }
+.restart-button {
+    margin-top: 15px;
+    margin-right: 15px;
+    float: right;
 }
 
 @media screen and (max-width: 400px) {
     .game {
-        width: 90%;
+        width: 18em;
     }
     .header {
         width: 18em;
