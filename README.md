@@ -1,7 +1,5 @@
-![Memory](https://socialify.git.ci/kejlerj/Memory/image?language=1&owner=1&stargazers=1&theme=Light)
+![Memory](https://socialify.git.ci/kejlerj/Memory/image?description=1&language=1&owner=1&stargazers=1&theme=Light)
 
-# Memory
-The Memory game.
 
 ## 🚀 Features
 - Memory Game (find the two identical cards).
