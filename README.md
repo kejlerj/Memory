@@ -9,3 +9,4 @@
 ## 💻 Build With
 The technologies used in this project are :
 - React.Js
+- Node.Js
